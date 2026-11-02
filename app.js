@@ -186,7 +186,7 @@ contactForm.addEventListener("submit",event=>{
   let invalid=null;
   for(const field of fields){
     const value=field.value.trim();
-    const bad=!value||(field.type==="email"&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));
+    const bad=!value||value.length>field.maxLength||(field.type==="email"&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));
     field.setAttribute("aria-invalid",String(bad));
     if(bad&&!invalid)invalid=field;
   }
@@ -202,8 +202,10 @@ contactForm.addEventListener("submit",event=>{
   const message=$("#contactMessage").value.trim();
   const subject=encodeURIComponent("MAHSOUB website message");
   const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-  status.textContent=language==="ar"?"سيفتح تطبيق البريد برسالتك. اضغط إرسال لإيصالها إلينا.":"Your email app will open with your message. Press Send there to deliver it.";
-  status.className="form-status success";
+  status.textContent=language==="ar"
+    ?"من المفترض أن يفتح تطبيق البريد مسودةً لرسالتك. اضغط إرسال لإيصالها؛ لا يمكن لهذه الصفحة تأكيد التسليم."
+    :"Your email app should open with a draft. Press Send there to deliver it; this page cannot confirm delivery.";
+  status.className="form-status";
   window.location.href=`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
 });
 
