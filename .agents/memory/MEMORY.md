@@ -1,0 +1,1 @@
+- [MAHSOUB brand rules](mahsoub-brand-guidelines.md) — present MAHSOUB as a real premium beverage brand; preserve its logo and never invent business or catalog facts.
