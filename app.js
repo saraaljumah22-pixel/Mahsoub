@@ -15,13 +15,18 @@ let activePage="home",lastFocus=null,cardServings={};
 
 function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function money(price){return `${Number(price).toFixed(3)} KWD`;}
+function nutritionSummary(product){
+  return language==="ar"
+    ?`${product.calories} سعرة · ${product.carbs} غ كربوهيدرات · ${product.fat} غ دهون · ${product.protein} غ بروتين · لكل حصة`
+    :`${product.calories} kcal · ${product.carbs} g carbs · ${product.fat} g fat · ${product.protein} g protein · per serving`;
+}
 function productCard(product){
   const serving=cardServings[product.id]||"Iced";
   return `<article class="product-card" data-product="${product.id}" tabindex="0" aria-label="${escapeHTML(product.name)} — ${escapeHTML(product.ar)}">
     <div class="product-visual"><img src="${product.image}" alt="${escapeHTML(language==="ar"?product.ar:product.name)}"></div>
     <div class="product-info"><div class="product-topline"><h2 class="product-name">${escapeHTML(product.name)}</h2><span class="product-price">${money(product.price)}</span></div>
       <p class="product-arabic" lang="ar" dir="rtl">${escapeHTML(product.ar)}</p>
-      <p class="product-cal">${product.calories} kcal <span aria-hidden="true">·</span> ${language==="ar"?"لكل حصة":"per serving"}</p>
+      <p class="product-cal">${nutritionSummary(product)}</p>
       <div class="card-controls">${product.water?`<span class="water-tag">${language==="ar"?"ماء عادي معبأ":"Regular bottled water"}</span>`:`<div class="serve-switch" role="group" aria-label="${language==="ar"?"طريقة التقديم":"Serving selection"}">${product.servings.map(option=>`<button type="button" data-serving="${option}" aria-pressed="${serving===option}">${language==="ar"?(option==="Hot"?"حار":"مثلج"):option}</button>`).join("")}</div>`}
       <button class="details-button" type="button" data-details="${product.id}"><span data-en="View Details" data-ar="عرض التفاصيل">${language==="ar"?"عرض التفاصيل":"View Details"}</span><span aria-hidden="true">↗</span></button></div>
     </div></article>`;
