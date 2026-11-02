@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" fill="none">
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="240" cy="405" rx="151" ry="15" fill="#203F32" fill-opacity=".34"/>
+
+    <path d="M90 286c0-15 67-29 150-29s150 14 150 29v20c0 17-67 31-150 31S90 323 90 306v-20Z" fill="#B69B78" stroke="#B69B78" stroke-width="3"/>
+    <path d="M97 292c26 13 79 21 143 21s117-8 143-21v81c0 19-64 35-143 35S97 392 97 373v-81Z" fill="#E9E2D2" stroke="#B69B78" stroke-width="4"/>
+    <path d="M108 307c31 10 78 16 132 16s101-6 132-16" stroke="#F7F4EC" stroke-width="4" opacity=".9"/>
+
+    <rect x="169" y="338" width="142" height="52" rx="12" fill="#203F32" stroke="#526B4C" stroke-width="4"/>
+    <rect x="179" y="346" width="122" height="36" rx="7" fill="#294337"/>
+    <text x="240" y="372" text-anchor="middle" fill="#F7F4EC" font-family="Arial, sans-serif" font-size="25" font-weight="600" letter-spacing="1">120 g</text>
+    <circle cx="337" cy="364" r="8" fill="#526B4C" stroke="#B69B78" stroke-width="3"/>
+    <circle cx="143" cy="364" r="5" fill="#B69B78"/>
+
+    <ellipse cx="240" cy="282" rx="162" ry="27" fill="#B69B78"/>
+    <ellipse cx="240" cy="276" rx="156" ry="23" fill="#F7F4EC" stroke="#B69B78" stroke-width="3"/>
+
+    <path d="M170 90c0-14 31-26 70-26s70 12 70 26l-10 151c-2 20-27 34-60 34s-58-14-60-34L170 90Z" fill="#F7F4EC" fill-opacity=".12" stroke="#F7F4EC" stroke-width="5"/>
+    <ellipse cx="240" cy="90" rx="70" ry="24" fill="#E9E2D2" fill-opacity=".24" stroke="#F7F4EC" stroke-width="5"/>
+    <path d="M180 132c17 8 38 12 60 12s43-4 60-12l-8 105c-2 15-23 26-52 26s-50-11-52-26l-8-105Z" fill="#526B4C" fill-opacity=".84"/>
+    <ellipse cx="240" cy="132" rx="60" ry="17" fill="#B69B78" fill-opacity=".9" stroke="#E9E2D2" stroke-width="3"/>
+    <path d="M188 153v61m104-61v61" stroke="#F7F4EC" stroke-width="2" opacity=".48"/>
+    <path d="M275 169h12m-12 18h10m-10 18h8" stroke="#F7F4EC" stroke-width="3" opacity=".78"/>
+    <path d="M184 238c3 13 25 22 56 22s53-9 56-22" stroke="#F7F4EC" stroke-width="4" opacity=".9"/>
+  </g>
+</svg>

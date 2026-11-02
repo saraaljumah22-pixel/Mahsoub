@@ -29,3 +29,4 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
   .hero-logo{width:72px;height:62px}
   .footer-brand img{width:40px;height:35px}
 }
+.hero-illustration{position:absolute;width:min(86%,360px);height:86%;object-fit:contain;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1}
