@@ -30,8 +30,8 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
   .footer-brand img{width:40px;height:35px}
 }
 .hero-illustration{position:absolute;width:min(86%,360px);height:86%;object-fit:contain;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1}
-.bestsellers-section{padding:68px 0 18px;background:var(--bg)}
+.bestsellers-section{padding:24px 0 18px;background:var(--bg)}
 .bestsellers-title{margin:0 clamp(22px,8vw,120px) 28px;font:500 clamp(38px,4.5vw,60px)/1.1 var(--serif);letter-spacing:-.03em;color:var(--text)}
 .bestseller-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:950px){.bestseller-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){.bestsellers-section{padding:52px 0 8px}.bestsellers-title{font-size:43px;margin-bottom:20px}.bestseller-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.bestsellers-section{padding:10px 0 8px}.bestsellers-title{font-size:43px;margin-bottom:20px}.bestseller-grid{grid-template-columns:1fr}}
