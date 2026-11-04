@@ -1,1 +1,2 @@
 - [MAHSOUB brand rules](mahsoub-brand-guidelines.md) — present MAHSOUB as a real premium beverage brand; preserve its logo and never invent business or catalog facts.
+- [Mockup sandbox startup](mockup-sandbox-workflow.md) — install the sandbox’s own dependencies and check for stale listeners before retrying its preview workflow.
