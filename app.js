@@ -5,6 +5,7 @@ const PRODUCTS = [
   {id:"americano",name:"Americano",ar:"أمريكانو",category:"coffee",price:1.000,calories:0,carbs:0,fat:0,protein:0,image:"attached_assets/generated_images/americano.jpg",servings:["Hot","Iced"]},
   {id:"water",name:"Water",ar:"ماء",category:"water",price:0.250,calories:0,carbs:0,fat:0,protein:0,ingredients:["Regular bottled water"],arIngredients:["ماء عادي معبأ"],image:"attached_assets/generated_images/water.jpg",servings:[],water:true}
 ];
+const BESTSELLER_IDS=["matcha","chocolate-milk","americano","coffee-latte"];
 const CONTACT_EMAIL="saraahdi04@icloud.com";
 
 const $=(selector,root=document)=>root.querySelector(selector);
@@ -46,6 +47,15 @@ function renderProducts(){
   $("#clearFilters").classList.toggle("visible",Boolean(query)||category!=="all");
 }
 
+function renderBestsellers(){
+  const bestsellers=BESTSELLER_IDS.map(id=>{
+    const product=PRODUCTS.find(item=>item.id===id);
+    if(!product)throw new Error(`Missing bestseller product: ${id}`);
+    return product;
+  });
+  $("#bestsellerGrid").innerHTML=bestsellers.map(productCard).join("");
+}
+
 function applyTranslations(){
   root.lang=language;
   root.dir=language==="ar"?"rtl":"ltr";
@@ -62,6 +72,7 @@ function applyTranslations(){
   $("#modalClose").setAttribute("aria-label",language==="ar"?"إغلاق تفاصيل المنتج":"Close product details");
   document.title=language==="ar"?"محسوب — كل رشفة محسوبة.":"MAHSOUB — Every Sip Counts.";
   renderProducts();
+  renderBestsellers();
   if(!$("#productModal").hidden)openProduct($("#productModal").dataset.productId,false);
 }
 
@@ -118,8 +129,7 @@ function closeModal(){
 
 function setServing(productId,serving){
   cardServings[productId]=serving;
-  const card=$(`[data-product="${productId}"]`);
-  if(card)$$("[data-serving]",card).forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.serving===serving)));
+  $$(`[data-product="${productId}"]`).forEach(card=>$$("[data-serving]",card).forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.serving===serving))));
   if(!$("#productModal").hidden&&$("#productModal").dataset.productId===productId)
     $$("[data-modal-serving]",$("#servingOptions")).forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.modalServing===serving)));
 }
