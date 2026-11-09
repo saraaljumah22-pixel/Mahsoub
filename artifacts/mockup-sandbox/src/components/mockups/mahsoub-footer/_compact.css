@@ -1,5 +1,5 @@
 /* Extracted from the main site's compact footer. */
-.footer-preview{min-height:180px}
+.footer-preview{min-height:100vh}
 .footer-preview .site-footer.footer-redesign{display:block;min-height:0;padding:22px clamp(24px,6vw,92px);background:var(--deep);color:var(--cream)}
 .footer-redesign .footer-inner{width:min(100%,1280px);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .footer-redesign .footer-brand-block{display:flex;align-items:center;gap:18px;min-width:0}

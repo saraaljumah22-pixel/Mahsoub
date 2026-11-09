@@ -51,9 +51,9 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
 
 /* Ordering additions keep the original MAHSOUB palette and editorial rhythm. */
 .hero-visual{height:auto;aspect-ratio:16/9;overflow:visible;isolation:isolate}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;border:0;box-shadow:none;background:var(--deep);mask-image:radial-gradient(ellipse at center,#000 50%,transparent 74%);-webkit-mask-image:radial-gradient(ellipse at center,#000 50%,transparent 74%)}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;border:0;box-shadow:none;background:var(--deep)}
 .hero-visual:before,.hero-visual:after{display:none}
-.hero-visual .hero-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;mask-image:radial-gradient(ellipse at center,#000 50%,transparent 74%);-webkit-mask-image:radial-gradient(ellipse at center,#000 50%,transparent 74%)}
+.hero-visual .hero-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero-visual video[hidden]{display:none}
 .menu-no-results{margin:10px clamp(22px,8vw,120px) 25px;padding:10px 0;color:var(--muted);font-size:13px}
 .menu-no-results[hidden]{display:none}
@@ -122,7 +122,7 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
 .calorie-display[role="progressbar"]{outline:none}
 .nutrition-mini-track{height:4px;background:var(--surface-2);display:block;margin-top:6px;overflow:hidden}
 .nutrition-mini-track>span{height:100%;display:block;background:var(--olive)}
-@media(max-width:950px){.featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:950px){.featured-grid{grid-template-columns:1fr}}
 @media(max-width:700px){
   .header-actions{gap:4px}.cart-trigger{font-size:0;gap:0;padding:0 7px}.cart-trigger .cart-count{font-size:10px}
   .featured-section{padding:52px 18px 60px}.featured-heading{display:block}.featured-heading p{margin-top:9px}

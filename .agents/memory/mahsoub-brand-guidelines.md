@@ -9,9 +9,9 @@ Never describe the business as a university/student project, prototype, or exper
 
 The user now requests a shopping cart, featured homepage drinks, and a local checkout confirmation. This supersedes the earlier prohibition on cart/checkout and homepage product cards. Do not integrate payments or Supabase as part of this scope.
 
-Missing approved Coffee Latte and Americano ingredients must not block other improvements. Keep those ingredients unchanged and do not infer lists.
+The user has now supplied confirmed bilingual ingredient lists for Coffee Latte, Americano, Matcha, and Chocolate Milk. Use only those confirmed lists; Stevia and Erythritol are used together in the first, third, and fourth drinks, never in Americano. Do not change approved prices or nutrition to infer a new recipe.
 
-**Why:** The user explicitly revised the requested shopping flow and said to skip only the missing coffee ingredient corrections.
+**Why:** The user supplied the final ingredient corrections and explicitly prohibited unverified recipe additions or changes to prices and nutrition.
 
 **Why:** The user explicitly set these as final brand and content constraints for the MAHSOUB website.
 
