@@ -148,8 +148,12 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
 .hero-measurement text{fill:currentColor;font:italic 12px var(--serif)}
 html[dir="rtl"] .hero-measured .hero-visual:after{background:linear-gradient(270deg,rgba(32,63,50,.92) 0%,rgba(32,63,50,.82) 31%,rgba(32,63,50,.42) 53%,rgba(32,63,50,.08) 100%)}
 @media(max-width:700px){
-  .hero.hero-measured{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;min-height:calc(100svh - 72px);padding:34px 25px 66px}
+  .hero.hero-measured{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;min-height:calc(100svh - 72px);padding:28px 25px 60px}
   .hero-measured .hero-copy{width:100%;max-width:540px}
+  .hero-measured .hero-logo{width:58px;height:50px;margin-bottom:12px}
+  .hero-measured .hero-tagline{font-size:45px;line-height:.98;margin-bottom:11px}
+  .hero-measured .hero-intro{font-size:13px;line-height:1.5;margin-bottom:14px}
+  .hero-measured .button{min-height:44px}
   .hero-measured .hero-visual{inset:0;width:100%;height:100%;aspect-ratio:auto}
   .hero-measured .hero-visual:after{background:linear-gradient(180deg,rgba(32,63,50,.94) 0%,rgba(32,63,50,.82) 42%,rgba(32,63,50,.46) 74%,rgba(32,63,50,.24) 100%)}
   .hero-measurement{inset-inline-end:24px;bottom:17px}
