@@ -16,6 +16,47 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
 @media(max-width:370px){.brand-word span{display:none}.hero-tagline{font-size:45px}.product-card{grid-template-columns:35% 1fr}.product-visual{min-height:170px}.product-topline{flex-direction:column;gap:3px}.product-price{padding:0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+.account-trigger{min-width:76px}
+.account-icon{display:none}
+.backend-status{margin:18px clamp(22px,8vw,120px);padding:12px 16px;border-inline-start:2px solid var(--warm);background:var(--surface-2);color:var(--text);font-size:12px}
+.auth-backdrop{z-index:80}
+.auth-modal{position:relative;width:min(510px,100%);max-height:min(780px,calc(100dvh - 36px));overflow:auto;background:var(--surface);color:var(--text);padding:38px clamp(23px,5vw,48px);box-shadow:0 28px 90px rgba(0,0,0,.35);animation:modal-in .22s ease both}
+.auth-modal h2{font:500 clamp(30px,5vw,42px)/1.15 var(--serif);margin:0 0 10px}
+.auth-description{color:var(--muted);font-size:12px;margin:0 0 23px}
+.auth-modal form{display:grid;gap:15px}
+.auth-modal label{display:grid;gap:6px;color:var(--text);font-size:11px;font-weight:700}
+.auth-modal input{height:47px;padding:0 12px;background:var(--field);border:1px solid var(--line);color:var(--text);outline:none}
+.auth-modal input:focus{border-color:var(--warm)}
+.auth-submit{width:100%;justify-content:center}
+.auth-mode-toggle{border:0;background:none;color:var(--olive);font-size:11px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px 0}
+.auth-status{min-height:20px;margin:0;color:var(--olive);font-size:11px}
+.auth-status.error{color:var(--error)}
+.account-view{display:grid;gap:13px}
+.account-email{margin:0 0 5px;color:var(--muted);font-size:12px;overflow-wrap:anywhere}
+.account-view>.button{justify-content:center}
+.order-history{display:grid;gap:10px}
+.order-history-item{border:1px solid var(--line);padding:13px;background:var(--surface-2);font-size:11px}
+.order-history-top,.order-history-total{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.order-history-top span,.order-history-item small{color:var(--muted);font-size:9px}
+.order-history-item ul{margin:10px 0;padding-inline-start:18px;color:var(--muted);line-height:1.8}
+.order-history-total{border-top:1px solid var(--line);padding-top:8px}
+.sign-out-button{justify-self:start}
+@media(max-width:700px){
+  .account-trigger{min-width:38px;width:38px;padding:0}
+  .account-trigger #accountLabel{display:none}
+  .account-icon{display:block;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6}
+  .language-button{min-width:38px;width:38px;padding:0}
+  .language-button span:not(.current-language){display:none}
+  .theme-button{min-width:38px;width:38px;padding:0}
+  .theme-button #themeLabel{display:none}
+  .theme-button:before{content:"◐";font-size:16px;line-height:1}
+  .backend-status{margin:12px 18px;font-size:11px}
+  .auth-modal{padding:30px 22px}
+}
+@media(max-width:370px){
+  .account-trigger{min-width:42px;padding-inline:5px}
+}
+
 /* Keep the uploaded MAHSOUB mark at its original wide proportions. */
 .brand img{width:58px;height:50px;object-fit:contain;border-radius:0}
 .hero-logo{width:88px;height:76px;object-fit:contain;border-radius:0}

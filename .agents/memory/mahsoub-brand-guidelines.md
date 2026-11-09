@@ -7,7 +7,7 @@ MAHSOUB is a premium Kuwaiti beverage brand. Use the original uploaded logo and 
 
 Never describe the business as a university/student project, prototype, or experimental business/menu. Do not invent product ingredients, prices, nutrition values, contact details, or locations.
 
-The user now requests a shopping cart, featured homepage drinks, and a local checkout confirmation. This supersedes the earlier prohibition on cart/checkout and homepage product cards. Do not integrate payments or Supabase as part of this scope.
+The current approved scope stores the product catalog, site media references, user accounts, and recorded orders in Supabase. This supersedes the earlier no-Supabase scope. Do not add payment processing; a saved order is not a paid or fulfilled sale.
 
 The user has now supplied confirmed bilingual ingredient lists for Coffee Latte, Americano, Matcha, and Chocolate Milk. Use only those confirmed lists; Stevia and Erythritol are used together in the first, third, and fourth drinks, never in Americano. Do not change approved prices or nutrition to infer a new recipe.
 

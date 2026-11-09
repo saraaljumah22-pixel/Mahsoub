@@ -6,7 +6,7 @@ const vm = require("node:vm");
 const root = path.resolve(__dirname, "..");
 const appPath = path.join(root, "app.js");
 const appSource = fs.readFileSync(appPath, "utf8");
-const productsDeclaration = appSource.match(/const PRODUCTS\s*=\s*(\[[\s\S]*?\n\]);/);
+const productsDeclaration = appSource.match(/(?:const|let) PRODUCTS\s*=\s*(\[[\s\S]*?\n\]);/);
 
 assert.ok(productsDeclaration, "Could not find the PRODUCTS array in app.js");
 

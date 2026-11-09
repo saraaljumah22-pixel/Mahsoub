@@ -1,7 +1,7 @@
 /dist/
 /node_modules/
 /generated-artifacts/
-/supabase-config.js
 !attached_assets/generated_videos/
 !attached_assets/generated_videos/mahsoub-hero.mp4
 !attached_assets/generated_videos/mahsoub-hero-final.mp4
+/supabase-config.js

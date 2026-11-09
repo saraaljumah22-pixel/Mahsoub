@@ -28,8 +28,8 @@ const baseURL = process.env.TEST_URL || `https://${process.env.REPLIT_DEV_DOMAIN
     assert.equal(await page.locator("#heroVideoToggle,.hero-caption,#bestsellerGrid,.bestsellers-section").count(), 0);
     assert.deepEqual(await page.locator(".featured-card").evaluateAll(cards => cards.map(card => card.dataset.featuredProduct)), ["matcha", "chocolate-milk", "coffee-latte"]);
     const confirmed = {
-      matcha: {en:["Almond Milk","Matcha Powder","Zero-Calorie Vanilla","Stevia","Erythritol"],ar:["حليب اللوز","مسحوق الماتشا","فانيلا خالية من السعرات","ستيفيا","إريثريتول"]},
-      "chocolate-milk": {en:["Skimmed Milk","Organic Cocoa Powder","Stevia","Erythritol"],ar:["حليب خالي الدسم","مسحوق كاكاو عضوي","ستيفيا","إريثريتول"]},
+      matcha: {en:["Matcha","Erythritol","Almond Milk"],ar:["ماتشا","إريثريتول","حليب اللوز"]},
+      "chocolate-milk": {en:["Skimmed Milk","Organic Cocoa Powder"],ar:["حليب خالي الدسم","مسحوق كاكاو عضوي"]},
       "coffee-latte": {en:["Low-fat Milk","Espresso Shot","Zero-Calorie Caramel Syrup","Stevia","Erythritol"],ar:["حليب قليل الدسم","شوت إسبريسو","سيرب كراميل خالي من السعرات","ستيفيا","إريثريتول"]},
       americano: {en:["Espresso Shot","Water","Ice"],ar:["شوت إسبريسو","ماء","ثلج"]}
     };
@@ -91,10 +91,20 @@ const baseURL = process.env.TEST_URL || `https://${process.env.REPLIT_DEV_DOMAIN
     await page.locator("#clearFilters").click();
     await page.locator("#cartToggle").click();
     await page.locator("#checkoutButton").click();
-    assert.match(await page.locator(".order-confirmation").textContent(), /لم يتم إرسال أي طلب حقيقي/);
+    assert.equal(await page.locator("#authOverlay").isVisible(), true);
+    assert.equal(await page.locator("#authTitle").textContent(), "تسجيل الدخول");
+    assert.match(await page.locator("#authStatus").textContent(), /سجّلوا الدخول/);
+    await count(1);
+    assert.notEqual(await page.evaluate(() => localStorage.getItem("mahsoub-cart")), "[]");
+    await page.locator("#authClose").click();
+    await page.locator('[data-remove="water|none"]').click();
     await count(0);
-    assert.equal(await page.evaluate(() => localStorage.getItem("mahsoub-cart")), "[]");
-    await page.locator("#confirmationDone").click();
+    await closeCart();
+    await page.locator("#accountToggle").click();
+    assert.equal(await page.locator("#authForm").isVisible(), true);
+    await page.locator("#authModeToggle").click();
+    assert.equal(await page.locator("#authTitle").textContent(), "إنشاء حساب");
+    await page.locator("#authClose").click();
     for (const width of [1440, 768, 390, 320]) {
       await page.setViewportSize({ width, height: 900 });
       for (const theme of ["light","dark"]) {
@@ -124,7 +134,7 @@ const baseURL = process.env.TEST_URL || `https://${process.env.REPLIT_DEV_DOMAIN
     assert.equal(await reducedPage.locator("video source").getAttribute("src"), null);
     assert.equal(await reducedPage.locator(".hero-fallback").isVisible(), true);
     assert.deepEqual(errors, []);
-    console.log("PASS: autoplay 720p control-free video, Featured Drinks only, exact bilingual ingredients, unchanged prices/nutrition, compact no-results feedback, compact footer, serving variants, cart quantities/removal/totals/persistence, local checkout, search, all pages at desktop/tablet/mobile sizes in both themes/languages, invalid saved cart, reduced motion.");
+    console.log("PASS: autoplay control-free video, database catalog reads, exact bilingual ingredients, unchanged prices/nutrition, account and signup UI, unauthenticated checkout protection, cart quantities/removal/totals/persistence, search, responsive pages/themes/languages, invalid saved cart, reduced motion.");
   } finally {
     await browser.close();
   }

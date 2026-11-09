@@ -1,3 +1,4 @@
 - [MAHSOUB brand rules](mahsoub-brand-guidelines.md) — present MAHSOUB as a real premium beverage brand; preserve its logo and never invent business or catalog facts.
+- [MAHSOUB Supabase scope](mahsoub-supabase-scope.md) — catalog, site media, accounts, and recorded orders belong in Supabase; orders do not imply payments.
 - [Mockup sandbox startup](mockup-sandbox-workflow.md) — install the sandbox’s own dependencies and check for stale listeners before retrying its preview workflow.
 - [Hero media integration](hero-media-integration.md) — inspect generated video frames for baked-in sidebars; file dimensions alone do not prove edge-to-edge widescreen content.
