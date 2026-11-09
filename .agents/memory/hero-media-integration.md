@@ -14,3 +14,9 @@ The homepage hero must use genuine visible drink-preparation motion. A still ima
 **Why:** The user explicitly corrected a still-based loop and reiterated that the homepage hero must show actual moving beverage footage.
 
 **How to apply:** Verify that the video frames visibly change during pouring or mixing on desktop and mobile before calling the hero complete.
+
+The user has approved the current MAHSOUB hero video and requires the media itself to remain untouched. Any requested effects must be separate overlays, not edits to the video file.
+
+**Why:** The user explicitly said the approved video must not be changed, replaced, regenerated, or modified.
+
+**How to apply:** Treat the approved clip as immutable in future hero work; implement only explicitly requested effects outside the video asset.

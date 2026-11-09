@@ -291,16 +291,26 @@ $("#productSearch").addEventListener("keydown",event=>{if(event.key==="Escape"&&
 const contactForm=$("#contactForm");
 const heroVideo=$(".hero-video");
 const heroSource=$("source",heroVideo);
+const heroMeasurementFill=$(".hero-measurement-fill");
 const reducedMotion=matchMedia("(prefers-reduced-motion: reduce)");
+function syncHeroMeasurement(){
+  if(!heroMeasurementFill||!Number.isFinite(heroVideo.duration)||heroVideo.duration<=0)return;
+  const progress=Math.max(0,Math.min(1,heroVideo.currentTime/heroVideo.duration));
+  heroMeasurementFill.style.strokeDasharray=`${(106*progress).toFixed(2)} 106`;
+}
 function stopHeroVideo(){
   heroVideo.hidden=true;
 }
 function syncHeroMotion(){
-  if(reducedMotion.matches){heroVideo.pause();stopHeroVideo();return;}
+  if(reducedMotion.matches){heroVideo.pause();heroMeasurementFill.style.strokeDasharray="0 106";stopHeroVideo();return;}
   heroVideo.hidden=false;
   if(!heroSource.getAttribute("src")){heroSource.src=heroSource.dataset.src;heroVideo.load();}
   heroVideo.play().catch(stopHeroVideo);
 }
+heroVideo.addEventListener("loadedmetadata",syncHeroMeasurement);
+heroVideo.addEventListener("timeupdate",syncHeroMeasurement);
+heroVideo.addEventListener("seeking",syncHeroMeasurement);
+heroVideo.addEventListener("seeked",syncHeroMeasurement);
 heroVideo.addEventListener("error",stopHeroVideo);
 heroSource.addEventListener("error",stopHeroVideo);
 reducedMotion.addEventListener("change",syncHeroMotion);
