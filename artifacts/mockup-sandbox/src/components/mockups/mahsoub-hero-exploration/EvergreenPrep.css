@@ -1,0 +1,208 @@
+.evergreen-prep,
+.evergreen-prep * {
+  box-sizing: border-box;
+}
+
+.evergreen-prep {
+  width: 100%;
+  min-height: 100dvh;
+  color: var(--cream);
+  background: #203b30;
+  font: 15px/1.65 var(--sans);
+}
+
+.evergreen-prep .evergreen-hero {
+  width: 100%;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(440px, 43.5%) minmax(0, 56.5%);
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 18% 72%, rgba(86, 105, 75, .22), transparent 42%),
+    linear-gradient(135deg, #203b30 0%, #1c352b 100%);
+}
+
+.evergreen-prep .evergreen-copy {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: none;
+  padding: 70px clamp(40px, 6.4vw, 104px) 70px clamp(42px, 8.2vw, 128px);
+  position: relative;
+}
+
+.evergreen-prep .evergreen-copy::after {
+  content: "";
+  position: absolute;
+  bottom: 52px;
+  left: clamp(42px, 8.2vw, 128px);
+  width: 40px;
+  height: 1px;
+  background: rgba(233, 226, 210, .36);
+}
+
+.evergreen-prep .hero-logo {
+  display: block;
+  width: 88px;
+  height: 76px;
+  object-fit: contain;
+  margin: 0 0 37px;
+  filter: saturate(.78);
+}
+
+.evergreen-prep .hero-tagline {
+  max-width: 500px;
+  margin: 0 0 20px;
+  color: #f1ecdf;
+  font: italic clamp(52px, 6.2vw, 82px)/.99 var(--serif);
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+
+.evergreen-prep .hero-intro {
+  max-width: 370px;
+  margin: 0 0 32px;
+  color: #d8d6c7;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.evergreen-prep .button-cream {
+  align-self: flex-start;
+  min-width: 194px;
+  min-height: 50px;
+  padding: 0 18px 0 21px;
+  background: #f2eee3;
+  color: #243c31;
+  font-size: 10px;
+  letter-spacing: .075em;
+  transition: transform .24s ease, background-color .24s ease;
+}
+
+.evergreen-prep .button-cream:hover {
+  background: #e7dfcd;
+  transform: translateY(-2px);
+}
+
+.evergreen-prep .button-cream span:last-child {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.evergreen-prep .evergreen-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  aspect-ratio: auto;
+  overflow: hidden;
+  isolation: isolate;
+  background: #7d755e;
+}
+
+.evergreen-prep .evergreen-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 49% center;
+  z-index: 0;
+}
+
+@media (min-width: 1500px) {
+  .evergreen-prep .evergreen-hero {
+    grid-template-columns: minmax(520px, 42%) minmax(0, 58%);
+  }
+}
+
+@media (max-width: 760px) {
+  .evergreen-prep {
+    min-height: 100dvh;
+  }
+
+  .evergreen-prep .evergreen-hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding: 0;
+  }
+
+  .evergreen-prep .evergreen-copy {
+    flex: 0 0 auto;
+    padding: 29px 25px 24px;
+  }
+
+  .evergreen-prep .evergreen-copy::after {
+    display: none;
+  }
+
+  .evergreen-prep .hero-logo {
+    width: 66px;
+    height: 57px;
+    margin-bottom: 18px;
+  }
+
+  .evergreen-prep .hero-tagline {
+    max-width: 420px;
+    margin-bottom: 10px;
+    font-size: clamp(46px, 12.3vw, 56px);
+    line-height: 1;
+  }
+
+  .evergreen-prep .hero-intro {
+    max-width: 310px;
+    margin-bottom: 19px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .evergreen-prep .button-cream {
+    min-width: 180px;
+    min-height: 45px;
+    font-size: 9px;
+  }
+
+  .evergreen-prep .evergreen-visual {
+    flex: 1 1 0;
+    width: 100%;
+    min-height: 280px;
+    height: auto;
+    aspect-ratio: auto;
+  }
+
+  .evergreen-prep .evergreen-image {
+    object-position: center 54%;
+  }
+}
+
+@media (max-width: 390px) {
+  .evergreen-prep .evergreen-copy {
+    padding: 23px 22px 20px;
+  }
+
+  .evergreen-prep .hero-logo {
+    width: 61px;
+    height: 53px;
+    margin-bottom: 15px;
+  }
+
+  .evergreen-prep .hero-tagline {
+    font-size: 46px;
+  }
+
+  .evergreen-prep .hero-intro {
+    margin-bottom: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evergreen-prep .button-cream {
+    transition: none;
+  }
+}
