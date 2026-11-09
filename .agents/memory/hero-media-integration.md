@@ -5,6 +5,12 @@ description: Non-obvious image-to-video framing behavior and MAHSOUB integration
 
 Inspect actual generated video frames, not only their dimensions. Image-to-video generation from square artwork can preserve that square composition inside a landscape file with baked-in black sidebars.
 
+The homepage hero must use genuine visible drink-preparation motion. A still image with a Ken Burns or zoom effect is not an acceptable substitute; if no suitable clip is available, ask the user for footage instead of presenting a still as video.
+
 **Why:** A generated 16:9 MAHSOUB clip had square artwork and black sidebars despite reporting the requested landscape dimensions.
 
 **How to apply:** Before integrating replacement hero media, verify framing, motion, and the loop boundary visually. The user permits a matched-background technique when true alpha transparency is unavailable; avoid shipping visible sidebars or a boxed media frame.
+
+**Why:** The user explicitly corrected a still-based loop and reiterated that the homepage hero must show actual moving beverage footage.
+
+**How to apply:** Verify that the video frames visibly change during pouring or mixing on desktop and mobile before calling the hero complete.

@@ -22,7 +22,7 @@ const baseURL = process.env.TEST_URL || `https://${process.env.REPLIT_DEV_DOMAIN
     await page.waitForSelector(".featured-card");
     assert.equal(await page.locator(".featured-card").count(), 3);
     await page.waitForFunction(() => document.querySelector("video").readyState >= 2);
-    assert.deepEqual(await page.locator("video").evaluate(video => [video.videoWidth, video.videoHeight, video.muted, video.loop]), [1024, 1024, true, true]);
+    assert.deepEqual(await page.locator("video").evaluate(video => [video.videoWidth, video.videoHeight, video.muted, video.loop]), [1280, 720, true, true]);
     assert.deepEqual(await page.locator("video").evaluate(video => [video.autoplay, video.controls, video.playsInline]), [true, false, true]);
     await page.waitForFunction(() => !document.querySelector("video").paused);
     assert.equal(await page.locator("#heroVideoToggle,.hero-caption,#bestsellerGrid,.bestsellers-section").count(), 0);

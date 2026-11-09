@@ -134,10 +134,23 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
 @media(max-width:370px){.brand-word{display:none}}
 @media(prefers-reduced-motion:reduce){.hero-video{display:none}.hero-fallback{z-index:1!important}}
 
-/* A full-frame square source keeps the drink correctly proportioned and the green field continuous. */
-.hero{grid-template-columns:minmax(0,.92fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);padding:clamp(48px,5.3vw,76px) clamp(24px,8.5vw,128px);min-height:0}
-.hero-visual{width:min(100%,620px);justify-self:end}
+/* The preparation footage is the hero surface itself, not an inset video card. */
+.hero.hero-measured{display:flex;align-items:center;min-height:clamp(620px,calc(100svh - 84px),820px);padding:clamp(52px,7vh,90px) clamp(24px,8vw,120px);isolation:isolate}
+.hero-measured .hero-copy{width:min(100%,540px);max-width:540px;z-index:2}
+.hero-measured .hero-visual{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;overflow:hidden;isolation:isolate;z-index:0;background:var(--deep)}
+.hero-measured .hero-visual:before{display:none}
+.hero-measured .hero-visual:after{display:block;content:"";position:absolute;inset:0;width:auto;height:auto;left:0;top:0;transform:none;border-radius:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(32,63,50,.92) 0%,rgba(32,63,50,.82) 31%,rgba(32,63,50,.42) 53%,rgba(32,63,50,.08) 100%)}
+.hero-measured .hero-fallback,.hero-measured .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
+.hero-measured .hero-video{z-index:0}
+.hero-measurement{position:absolute;inset-inline-end:clamp(24px,8vw,120px);bottom:26px;z-index:2;width:130px;opacity:.72;color:var(--beige)}
+.hero-measurement svg{display:block;width:100%;height:auto;overflow:visible}
+.hero-measurement path{fill:none;stroke:currentColor;stroke-width:1}
+.hero-measurement text{fill:currentColor;font:italic 12px var(--serif)}
+html[dir="rtl"] .hero-measured .hero-visual:after{background:linear-gradient(270deg,rgba(32,63,50,.92) 0%,rgba(32,63,50,.82) 31%,rgba(32,63,50,.42) 53%,rgba(32,63,50,.08) 100%)}
 @media(max-width:700px){
-  .hero{padding:44px 25px 24px;min-height:auto}
-  .hero-visual{width:100%;max-width:420px;align-self:center}
+  .hero.hero-measured{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;min-height:calc(100svh - 72px);padding:34px 25px 66px}
+  .hero-measured .hero-copy{width:100%;max-width:540px}
+  .hero-measured .hero-visual{inset:0;width:100%;height:100%;aspect-ratio:auto}
+  .hero-measured .hero-visual:after{background:linear-gradient(180deg,rgba(32,63,50,.94) 0%,rgba(32,63,50,.82) 42%,rgba(32,63,50,.46) 74%,rgba(32,63,50,.24) 100%)}
+  .hero-measurement{inset-inline-end:24px;bottom:17px}
 }
