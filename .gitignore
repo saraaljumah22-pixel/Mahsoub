@@ -1,1 +1,5 @@
 /dist/
+/node_modules/
+/generated-artifacts/
+!attached_assets/generated_videos/
+!attached_assets/generated_videos/mahsoub-hero.mp4
