@@ -50,7 +50,7 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
 @media(max-width:370px){.footer-redesign .footer-inner{grid-template-columns:1fr}.footer-redesign .footer-social-link{grid-row:auto}.footer-redesign .footer-navigation ul{gap:22px}}
 
 /* Ordering additions keep the original MAHSOUB palette and editorial rhythm. */
-.hero-visual{height:auto;aspect-ratio:16/9;overflow:visible;isolation:isolate}
+.hero-visual{height:auto;aspect-ratio:1/1;overflow:hidden;isolation:isolate;background:var(--deep)}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;border:0;box-shadow:none;background:var(--deep)}
 .hero-visual:before,.hero-visual:after{display:none}
 .hero-visual .hero-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
@@ -133,3 +133,11 @@ html[dir="rtl"] .main-nav{direction:rtl}html[dir="rtl"] .hero{direction:rtl}html
 @media(max-width:370px){.cart-item{grid-template-columns:58px 1fr auto;gap:9px}.cart-item img{width:58px;height:68px}.featured-info{padding:12px}}
 @media(max-width:370px){.brand-word{display:none}}
 @media(prefers-reduced-motion:reduce){.hero-video{display:none}.hero-fallback{z-index:1!important}}
+
+/* A full-frame square source keeps the drink correctly proportioned and the green field continuous. */
+.hero{grid-template-columns:minmax(0,.92fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);padding:clamp(48px,5.3vw,76px) clamp(24px,8.5vw,128px);min-height:0}
+.hero-visual{width:min(100%,620px);justify-self:end}
+@media(max-width:700px){
+  .hero{padding:44px 25px 24px;min-height:auto}
+  .hero-visual{width:100%;max-width:420px;align-self:center}
+}
