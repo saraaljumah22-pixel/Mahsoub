@@ -20,3 +20,9 @@ The user has approved the current MAHSOUB hero video and requires the media itse
 **Why:** The user explicitly said the approved video must not be changed, replaced, regenerated, or modified.
 
 **How to apply:** Treat the approved clip as immutable in future hero work; implement only explicitly requested effects outside the video asset.
+
+The user rejected a separate animated numeric overlay on the scale; preserve the video’s original static reading and keep only the approved grams-ruler animation.
+
+**Why:** The overlay looked artificial and misaligned; the user prefers the clean, natural video even without an increasing number.
+
+**How to apply:** Do not add a digital-weight overlay unless the user explicitly reopens this direction.
