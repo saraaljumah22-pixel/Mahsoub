@@ -23,9 +23,23 @@ const baseURL = process.env.TEST_URL || `https://${process.env.REPLIT_DEV_DOMAIN
     assert.equal(await page.locator(".featured-card").count(), 3);
     await page.waitForFunction(() => document.querySelector("video").readyState >= 2);
     assert.deepEqual(await page.locator("video").evaluate(video => [video.videoWidth, video.videoHeight, video.muted, video.loop]), [1280, 720, true, true]);
-    await page.locator("#heroVideoToggle").click();
-    assert.equal(await page.locator("video").evaluate(video => video.paused), true);
-    await page.locator("#heroVideoToggle").click();
+    assert.deepEqual(await page.locator("video").evaluate(video => [video.autoplay, video.controls, video.playsInline]), [true, false, true]);
+    await page.waitForFunction(() => !document.querySelector("video").paused);
+    assert.equal(await page.locator("#heroVideoToggle,.hero-caption,#bestsellerGrid,.bestsellers-section").count(), 0);
+    assert.deepEqual(await page.locator(".featured-card").evaluateAll(cards => cards.map(card => card.dataset.featuredProduct)), ["matcha", "chocolate-milk", "coffee-latte"]);
+    const confirmed = {
+      matcha: {en:["Almond Milk","Matcha Powder","Zero-Calorie Vanilla","Stevia","Erythritol"],ar:["حليب اللوز","مسحوق الماتشا","فانيلا خالية من السعرات","ستيفيا","إريثريتول"]},
+      "chocolate-milk": {en:["Skimmed Milk","Organic Cocoa Powder","Stevia","Erythritol"],ar:["حليب خالي الدسم","مسحوق كاكاو عضوي","ستيفيا","إريثريتول"]},
+      "coffee-latte": {en:["Low-fat Milk","Espresso Shot","Zero-Calorie Caramel Syrup","Stevia","Erythritol"],ar:["حليب قليل الدسم","شوت إسبريسو","سيرب كراميل خالي من السعرات","ستيفيا","إريثريتول"]},
+      americano: {en:["Espresso Shot","Water","Ice"],ar:["شوت إسبريسو","ماء","ثلج"]}
+    };
+    assert.deepEqual(await page.evaluate(() => PRODUCTS.map(({id,price,calories,carbs,fat,protein}) => ({id,price,calories,carbs,fat,protein}))), [
+      {id:"matcha",price:1.5,calories:39,carbs:12,fat:2.2,protein:1},
+      {id:"chocolate-milk",price:1,calories:50,carbs:4.8,fat:0.9,protein:4},
+      {id:"coffee-latte",price:1.25,calories:57,carbs:10,fat:1,protein:2},
+      {id:"americano",price:1,calories:0,carbs:0,fat:0,protein:0},
+      {id:"water",price:.25,calories:0,carbs:0,fat:0,protein:0}
+    ]);
 
     await page.locator('[data-featured-product="coffee-latte"] [data-serving="Hot"]').click();
     await page.locator('[data-featured-product="coffee-latte"] [data-add-cart]').click();
@@ -58,19 +72,23 @@ const baseURL = process.env.TEST_URL || `https://${process.env.REPLIT_DEV_DOMAIN
     for (const language of ["en", "ar"]) {
       if (language === "ar") await page.locator("#languageToggle").click();
       assert.equal(await page.locator("html").getAttribute("dir"), language === "ar" ? "rtl" : "ltr");
-      for (const id of ["coffee-latte", "americano"]) {
+      for (const [id, ingredients] of Object.entries(confirmed)) {
         await page.locator(`#productGrid [data-details="${id}"]`).click();
-        assert.equal(await page.locator("#modalDescription").isHidden(), true);
+        const expected=ingredients[language].join(language==="ar"?"، ":", ");
+        assert.equal(await page.locator("#modalDescription .ingredient-list").textContent(), expected);
+        assert.equal(await page.locator(`#productGrid [data-product="${id}"] .ingredient-list`).textContent(), expected);
         await page.locator("#modalClose").click();
       }
-      await page.locator('#productGrid [data-details="matcha"]').click();
-      assert.match(await page.locator("#modalDescription").textContent(), language === "ar" ? /حليب اللوز/ : /Almond Milk/);
-      await page.locator("#modalClose").click();
     }
     assert.deepEqual(await page.locator("#productGrid .calorie-display").evaluateAll(nodes => nodes.map(node => Number(node.getAttribute("aria-valuenow")))), [39, 50, 57, 0, 0]);
     await page.locator("#productSearch").fill("أمريكانو");
     assert.equal(await page.locator("#productGrid .product-card").count(), 1);
     await page.locator("#productSearch").fill("");
+    await page.locator("#productSearch").fill("no-matching-drink");
+    assert.equal(await page.locator("#emptyState").isVisible(), true);
+    assert.ok((await page.locator("#emptyState").boundingBox()).height < 100);
+    assert.equal(await page.locator(".empty-state,.empty-mark").count(), 0);
+    await page.locator("#clearFilters").click();
     await page.locator("#cartToggle").click();
     await page.locator("#checkoutButton").click();
     assert.match(await page.locator(".order-confirmation").textContent(), /لم يتم إرسال أي طلب حقيقي/);
@@ -79,12 +97,20 @@ const baseURL = process.env.TEST_URL || `https://${process.env.REPLIT_DEV_DOMAIN
     await page.locator("#confirmationDone").click();
     for (const width of [1440, 768, 390, 320]) {
       await page.setViewportSize({ width, height: 900 });
-      await page.evaluate(() => showPage("home"));
-      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `Home overflow at ${width}`);
-      await page.evaluate(() => showPage("menu"));
-      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `Menu overflow at ${width}`);
-      await page.locator("#themeToggle").click();
+      for (const theme of ["light","dark"]) {
+        await page.evaluate(theme => { document.documentElement.dataset.theme=theme; }, theme);
+        for (const locale of ["en","ar"]) {
+          await page.evaluate(locale => setLanguage(locale), locale);
+          for (const route of ["home","menu","about","contact"]) {
+            await page.evaluate(route => showPage(route), route);
+            assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `${route} overflow at ${width}/${theme}/${locale}`);
+          }
+        }
+      }
     }
+    await page.setViewportSize({width:1440,height:1000});
+    const footerCenters=await page.locator(".footer-inner > *").evaluateAll(items => items.map(item => {const r=item.getBoundingClientRect();return r.top+r.height/2;}));
+    assert.ok(Math.max(...footerCenters)-Math.min(...footerCenters)<5, "Desktop footer must align in one row");
     await page.evaluate(() => localStorage.setItem("mahsoub-cart", JSON.stringify([null, {id:"water", serving:"Hot", quantity:1}])));
     await page.reload({ waitUntil: "domcontentloaded" });
     await count(0);
@@ -98,7 +124,7 @@ const baseURL = process.env.TEST_URL || `https://${process.env.REPLIT_DEV_DOMAIN
     assert.equal(await reducedPage.locator("video source").getAttribute("src"), null);
     assert.equal(await reducedPage.locator(".hero-fallback").isVisible(), true);
     assert.deepEqual(errors, []);
-    console.log("PASS: video, featured drinks, serving variants, cart quantities/removal/totals/persistence, local checkout, bilingual ingredient preservation, calorie values, Arabic search, responsive layouts, themes, invalid saved cart, reduced motion.");
+    console.log("PASS: autoplay 720p control-free video, Featured Drinks only, exact bilingual ingredients, unchanged prices/nutrition, compact no-results feedback, compact footer, serving variants, cart quantities/removal/totals/persistence, local checkout, search, all pages at desktop/tablet/mobile sizes in both themes/languages, invalid saved cart, reduced motion.");
   } finally {
     await browser.close();
   }

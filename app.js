@@ -1,11 +1,10 @@
 const PRODUCTS = [
-  {id:"matcha",name:"Matcha",ar:"ماتشا",category:"matcha",price:1.500,calories:39,carbs:12,fat:2.2,protein:1,ingredients:["Matcha","Erythritol","Almond Milk"],arIngredients:["ماتشا","إريثريتول","حليب اللوز"],image:"attached_assets/generated_images/matcha.jpg",servings:["Hot","Iced"]},
-  {id:"chocolate-milk",name:"Chocolate Milk",ar:"حليب كاكاو",category:"chocolate",price:1.000,calories:50,carbs:4.8,fat:0.9,protein:4,ingredients:["Skimmed Milk","Organic Cocoa Powder"],arIngredients:["حليب خالي الدسم","مسحوق كاكاو عضوي"],image:"attached_assets/generated_images/chocolate-milk.jpg",servings:["Hot","Iced"]},
-  {id:"coffee-latte",name:"Coffee Latte",ar:"كوفي لاتيه",category:"coffee",price:1.250,calories:57,carbs:10,fat:1,protein:2,image:"attached_assets/generated_images/coffee-latte.jpg",servings:["Hot","Iced"]},
-  {id:"americano",name:"Americano",ar:"أمريكانو",category:"coffee",price:1.000,calories:0,carbs:0,fat:0,protein:0,image:"attached_assets/generated_images/americano.jpg",servings:["Hot","Iced"]},
+  {id:"matcha",name:"Matcha",ar:"ماتشا",category:"matcha",price:1.500,calories:39,carbs:12,fat:2.2,protein:1,ingredients:["Almond Milk","Matcha Powder","Zero-Calorie Vanilla","Stevia","Erythritol"],arIngredients:["حليب اللوز","مسحوق الماتشا","فانيلا خالية من السعرات","ستيفيا","إريثريتول"],image:"attached_assets/generated_images/matcha.jpg",servings:["Hot","Iced"]},
+  {id:"chocolate-milk",name:"Chocolate Milk",ar:"حليب الشوكولاتة",category:"chocolate",price:1.000,calories:50,carbs:4.8,fat:0.9,protein:4,ingredients:["Skimmed Milk","Organic Cocoa Powder","Stevia","Erythritol"],arIngredients:["حليب خالي الدسم","مسحوق كاكاو عضوي","ستيفيا","إريثريتول"],image:"attached_assets/generated_images/chocolate-milk.jpg",servings:["Hot","Iced"]},
+  {id:"coffee-latte",name:"Coffee Latte",ar:"كوفي لاتيه",category:"coffee",price:1.250,calories:57,carbs:10,fat:1,protein:2,ingredients:["Low-fat Milk","Espresso Shot","Zero-Calorie Caramel Syrup","Stevia","Erythritol"],arIngredients:["حليب قليل الدسم","شوت إسبريسو","سيرب كراميل خالي من السعرات","ستيفيا","إريثريتول"],image:"attached_assets/generated_images/coffee-latte.jpg",servings:["Hot","Iced"]},
+  {id:"americano",name:"Americano",ar:"أمريكانو",category:"coffee",price:1.000,calories:0,carbs:0,fat:0,protein:0,ingredients:["Espresso Shot","Water","Ice"],arIngredients:["شوت إسبريسو","ماء","ثلج"],image:"attached_assets/generated_images/americano.jpg",servings:["Hot","Iced"]},
   {id:"water",name:"Water",ar:"ماء",category:"water",price:0.250,calories:0,carbs:0,fat:0,protein:0,ingredients:["Regular bottled water"],arIngredients:["ماء عادي معبأ"],image:"attached_assets/generated_images/water.jpg",servings:[],water:true}
 ];
-const BESTSELLER_IDS=["matcha","chocolate-milk","americano","coffee-latte"];
 const CONTACT_EMAIL="saraahdi04@icloud.com";
 
 const $=(selector,root=document)=>root.querySelector(selector);
@@ -25,6 +24,10 @@ try{
 
 function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function money(price){return `${Number(price).toFixed(3)} KWD`;}
+function ingredientMarkup(product){
+  const ingredients=language==="ar"?product.arIngredients:product.ingredients;
+  return ingredients?`<span class="ingredients-label">${language==="ar"?"المكونات":"Ingredients"}</span><span class="ingredient-list">${ingredients.map(escapeHTML).join(language==="ar"?"، ":", ")}</span>`:"";
+}
 function nutritionSummary(product){
   return language==="ar"
     ?`${product.calories} سعرة · ${product.carbs} غ كربوهيدرات · ${product.fat} غ دهون · ${product.protein} غ بروتين · لكل حصة`
@@ -42,7 +45,8 @@ function productCard(product){
     <div class="product-visual"><img src="${product.image}" alt="${escapeHTML(language==="ar"?product.ar:product.name)}"></div>
     <div class="product-info"><div class="product-topline"><h2 class="product-name">${escapeHTML(product.name)}</h2><span class="product-price">${money(product.price)}</span></div>
       <p class="product-arabic" lang="ar" dir="rtl">${escapeHTML(product.ar)}</p>
-      ${calorieDisplay(product)}<p class="product-cal">${nutritionSummary(product)}</p>
+       <p class="card-ingredients">${ingredientMarkup(product)}</p>
+       ${calorieDisplay(product)}<p class="product-cal">${nutritionSummary(product)}</p>
       <div class="card-controls">${product.water?`<span class="water-tag">${language==="ar"?"ماء عادي معبأ":"Regular bottled water"}</span>`:`<div class="serve-switch" role="group" aria-label="${language==="ar"?"طريقة التقديم":"Serving selection"}">${product.servings.map(option=>`<button type="button" data-serving="${option}" aria-pressed="${serving===option}">${language==="ar"?(option==="Hot"?"حار":"مثلج"):option}</button>`).join("")}</div>`}
       <button class="details-button" type="button" data-details="${product.id}"><span data-en="View Details" data-ar="عرض التفاصيل">${language==="ar"?"عرض التفاصيل":"View Details"}</span><span aria-hidden="true">↗</span></button><button class="add-cart-button" type="button" data-add-cart="${product.id}">${language==="ar"?"أضف إلى السلة":"Add to Cart"}</button></div>
     </div></article>`;
@@ -65,20 +69,12 @@ function featuredCard(product){
   const serving=cardServings[product.id]||"Iced";
   return `<article class="featured-card" data-featured-product="${product.id}">
     <img src="${product.image}" alt="${escapeHTML(language==="ar"?product.ar:product.name)}">
-    <div class="featured-info"><h3>${escapeHTML(product.name)}</h3><p class="product-arabic" lang="ar" dir="rtl">${escapeHTML(product.ar)}</p><span class="product-price">${money(product.price)}</span>${calorieDisplay(product)}
+    <div class="featured-info"><h3>${escapeHTML(product.name)}</h3><p class="product-arabic" lang="ar" dir="rtl">${escapeHTML(product.ar)}</p><span class="product-price">${money(product.price)}</span><p class="card-ingredients">${ingredientMarkup(product)}</p>${calorieDisplay(product)}
     ${product.water?"":`<div class="serve-switch" role="group" aria-label="${language==="ar"?"طريقة التقديم":"Serving selection"}">${product.servings.map(option=>`<button type="button" data-serving="${option}" aria-pressed="${serving===option}">${language==="ar"?(option==="Hot"?"حار":"مثلج"):option}</button>`).join("")}</div>`}
     <button class="add-cart-button" type="button" data-add-cart="${product.id}">${language==="ar"?"أضف إلى السلة":"Add to Cart"}</button></div>
   </article>`;
 }
 
-function renderBestsellers(){
-  const bestsellers=BESTSELLER_IDS.map(id=>{
-    const product=PRODUCTS.find(item=>item.id===id);
-    if(!product)throw new Error(`Missing bestseller product: ${id}`);
-    return product;
-  });
-  $("#bestsellerGrid").innerHTML=bestsellers.map(productCard).join("");
-}
 function renderFeatured(){ $("#featuredGrid").innerHTML=PRODUCTS.slice(0,3).map(featuredCard).join(""); }
 function saveCart(){localStorage.setItem("mahsoub-cart",JSON.stringify(cart));}
 function cartItemCount(){return cart.reduce((total,item)=>total+item.quantity,0);}
@@ -158,7 +154,6 @@ function applyTranslations(){
   $("#cartClose").setAttribute("aria-label",language==="ar"?"إغلاق سلة التسوق":"Close shopping cart");
   document.title=language==="ar"?"محسوب — كل رشفة محسوبة.":"MAHSOUB — Every Sip Counts.";
   renderProducts();
-  renderBestsellers();
   renderFeatured();
   renderCartCount();
   if(!$("#cartOverlay").hidden)renderCart();
@@ -188,9 +183,8 @@ function openProduct(id,focus=true){
   $("#modalPrice").textContent=money(product.price);
   const description=$("#modalDescription");
   if(product.ingredients){
-    const ingredientList=language==="ar"?product.arIngredients:product.ingredients;
     description.hidden=false;
-    description.innerHTML=`<span class="ingredients-label">${language==="ar"?"المكونات":"Ingredients"}</span>${ingredientList.map(escapeHTML).join(language==="ar"?"، ":", ")}`;
+    description.innerHTML=ingredientMarkup(product);
   }else{
     description.hidden=true;
     description.textContent="";
@@ -289,7 +283,6 @@ $("#productSearch").addEventListener("input",renderProducts);
 $("#categoryFilter").addEventListener("change",renderProducts);
 function resetFilters(){$("#productSearch").value="";$("#categoryFilter").value="all";renderProducts();$("#productSearch").focus();}
 $("#clearFilters").addEventListener("click",resetFilters);
-$("#emptyReset").addEventListener("click",resetFilters);
 $("#modalClose").addEventListener("click",closeModal);
 $("#productModal").addEventListener("click",event=>{if(event.target===$("#productModal"))closeModal();});
 $("#productSearch").addEventListener("keydown",event=>{if(event.key==="Escape"&&event.currentTarget.value){event.currentTarget.value="";renderProducts();}});
@@ -297,27 +290,18 @@ $("#productSearch").addEventListener("keydown",event=>{if(event.key==="Escape"&&
 const contactForm=$("#contactForm");
 const heroVideo=$(".hero-video");
 const heroSource=$("source",heroVideo);
-const heroVideoToggle=$("#heroVideoToggle");
 const reducedMotion=matchMedia("(prefers-reduced-motion: reduce)");
-function updateVideoControl(){
-  heroVideoToggle.dataset.en=heroVideo.paused?"Play animation":"Pause animation";
-  heroVideoToggle.dataset.ar=heroVideo.paused?"تشغيل الحركة":"إيقاف الحركة";
-  heroVideoToggle.textContent=heroVideoToggle.dataset[language];
-}
 function stopHeroVideo(){
-  heroVideo.hidden=true;heroVideoToggle.hidden=true;
+  heroVideo.hidden=true;
 }
 function syncHeroMotion(){
   if(reducedMotion.matches){heroVideo.pause();stopHeroVideo();return;}
-  heroVideo.hidden=false;heroVideoToggle.hidden=false;
+  heroVideo.hidden=false;
   if(!heroSource.getAttribute("src")){heroSource.src=heroSource.dataset.src;heroVideo.load();}
-  heroVideo.play().catch(updateVideoControl);
+  heroVideo.play().catch(stopHeroVideo);
 }
 heroVideo.addEventListener("error",stopHeroVideo);
 heroSource.addEventListener("error",stopHeroVideo);
-heroVideo.addEventListener("play",updateVideoControl);
-heroVideo.addEventListener("pause",updateVideoControl);
-heroVideoToggle.addEventListener("click",()=>heroVideo.paused?heroVideo.play().catch(updateVideoControl):heroVideo.pause());
 reducedMotion.addEventListener("change",syncHeroMotion);
 syncHeroMotion();
 contactForm.addEventListener("input",event=>{

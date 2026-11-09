@@ -1,4 +1,5 @@
 import './_group.css';
+import './_compact.css';
 
 function InstagramIcon() {
   return (
@@ -13,8 +14,8 @@ function InstagramIcon() {
 export function FooterRedesign() {
   return (
     <div className="footer-preview">
-      <footer className="site-footer footer-refresh">
-        <div className="footer-main">
+      <footer className="site-footer footer-redesign">
+        <div className="footer-inner">
           <div className="footer-brand-block">
             <a className="footer-brand" href="#home" aria-label="MAHSOUB home">
               <img src="/__mockup/images/mahsoub-logo.jpeg" alt="" />
@@ -24,7 +25,6 @@ export function FooterRedesign() {
           </div>
 
           <nav className="footer-navigation" aria-label="Footer navigation">
-            <h2 className="footer-section-title">Explore</h2>
             <ul>
               <li><button type="button">About Us</button></li>
               <li><button type="button">Menu</button></li>
@@ -32,8 +32,6 @@ export function FooterRedesign() {
             </ul>
           </nav>
 
-          <section className="footer-social" aria-labelledby="footer-social-title">
-            <h2 className="footer-section-title" id="footer-social-title">Follow our journey</h2>
             <a
               className="footer-social-link"
               href="https://www.instagram.com/ma7sob.kw/"
@@ -45,9 +43,8 @@ export function FooterRedesign() {
               <span>@ma7sob.kw</span>
               <span className="footer-arrow" aria-hidden="true">↗</span>
             </a>
-          </section>
+          <span className="copyright">© MAHSOUB</span>
         </div>
-        <div className="footer-bottom">© MAHSOUB</div>
       </footer>
     </div>
   );

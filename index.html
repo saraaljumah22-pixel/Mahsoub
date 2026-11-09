@@ -41,18 +41,12 @@
           <a class="button button-cream" href="#menu" data-page="menu"><span data-en="Explore Our Menu" data-ar="اكتشفوا قائمتنا">Explore Our Menu</span><span aria-hidden="true">↗</span></a>
         </div>
         <div class="hero-visual">
-          <img class="hero-fallback" src="attached_assets/generated_images/mahsoub-hero-poster.jpg" alt="Iced MAHSOUB drink on a digital kitchen scale" data-alt-en="Iced MAHSOUB drink on a digital kitchen scale" data-alt-ar="مشروب محسوب مثلج على ميزان مطبخ رقمي">
-          <video class="hero-video" autoplay muted loop playsinline preload="none" poster="attached_assets/generated_images/mahsoub-hero-poster.jpg" aria-hidden="true">
-            <source data-src="attached_assets/generated_videos/mahsoub-hero.mp4" type="video/mp4">
+          <img class="hero-fallback" src="attached_assets/generated_images/mahsoub-hero-final-poster.jpg" alt="Iced matcha being prepared on a digital kitchen scale" data-alt-en="Iced matcha being prepared on a digital kitchen scale" data-alt-ar="تحضير مشروب ماتشا مثلج على ميزان مطبخ رقمي">
+          <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="attached_assets/generated_images/mahsoub-hero-final-poster.jpg" aria-hidden="true" disablepictureinpicture disableremoteplayback>
+            <source data-src="attached_assets/generated_videos/mahsoub-hero-final.mp4" type="video/mp4">
           </video>
-          <button class="hero-video-toggle" id="heroVideoToggle" type="button" data-en="Pause animation" data-ar="إيقاف الحركة">Pause animation</button>
-          <div class="hero-caption"><span>MAHSOUB</span><span data-en="EVERY SIP COUNTS" data-ar="كل رشفة محسوبة">EVERY SIP COUNTS</span></div>
         </div>
       </div>
-      <section class="bestsellers-section" aria-labelledby="bestsellersTitle">
-        <h2 class="bestsellers-title" id="bestsellersTitle" data-en="Bestsellers" data-ar="الأكثر مبيعاً">Bestsellers</h2>
-        <div class="product-grid bestseller-grid" id="bestsellerGrid"></div>
-      </section>
       <section class="home-about" aria-labelledby="homeAboutTitle">
         <div><p class="eyebrow"><span class="eyebrow-line"></span><span data-en="About MAHSOUB" data-ar="عن محسوب">About MAHSOUB</span></p><h2 id="homeAboutTitle" data-en="Great taste.<br>Clear choices." data-ar="مذاق رائع.<br>واختيارات واضحة.">Great taste.<br>Clear choices.</h2></div>
         <div><p data-en="We bring together drinks you love and the details that help you choose with confidence. Thoughtfully prepared, with every sip in mind." data-ar="نجمع بين مشروباتكم المفضلة والتفاصيل التي تساعدكم على الاختيار بثقة. تحضير مدروس، مع الاهتمام بكل رشفة.">We bring together drinks you love and the details that help you choose with confidence. Thoughtfully prepared, with every sip in mind.</p>
@@ -74,7 +68,7 @@
       </div>
       <div class="results-meta"><span id="resultCount" aria-live="polite"></span><button id="clearFilters" type="button" class="clear-filters" data-en="Clear filters" data-ar="مسح عوامل التصفية">Clear filters</button></div>
       <div class="product-grid" id="productGrid"></div>
-      <div class="empty-state" id="emptyState" hidden><span class="empty-mark" aria-hidden="true">0</span><h2 data-en="No Products Found" data-ar="لم يتم العثور على منتجات">No Products Found</h2><p data-en="Try another name or clear your filters." data-ar="جرّب اسماً آخر أو امسح عوامل التصفية.">Try another name or clear your filters.</p><button class="button button-dark" id="emptyReset" type="button" data-en="Show all drinks" data-ar="عرض جميع المشروبات">Show all drinks</button></div>
+      <p class="menu-no-results" id="emptyState" role="status" hidden data-en="No drinks match this search. Try another name or clear your filters." data-ar="لا توجد مشروبات مطابقة لهذا البحث. جرّبوا اسماً آخر أو امسحوا عوامل التصفية.">No drinks match this search. Try another name or clear your filters.</p>
       <p class="nutrition-disclaimer" data-en="Nutritional values are approximate and may vary depending on ingredients and preparation." data-ar="القيم الغذائية تقريبية وقد تختلف حسب المكونات وطريقة التحضير.">Nutritional values are approximate and may vary depending on ingredients and preparation.</p>
     </section>
 
@@ -105,7 +99,6 @@
 
   <footer class="site-footer footer-redesign">
     <div class="footer-inner">
-      <div class="footer-main">
         <div class="footer-brand-block">
           <a class="footer-brand" href="#home" data-page="home" aria-label="MAHSOUB home">
             <img src="attached_assets/IMG_1707_1793637320300.jpeg" alt="">
@@ -115,7 +108,6 @@
         </div>
 
         <nav class="footer-navigation" aria-label="Footer navigation">
-          <h2 class="footer-section-title" data-en="Explore" data-ar="استكشفوا">Explore</h2>
           <ul>
             <li><button type="button" data-go="about" data-en="About Us" data-ar="من نحن">About Us</button></li>
             <li><button type="button" data-go="menu" data-en="Menu" data-ar="القائمة">Menu</button></li>
@@ -123,17 +115,12 @@
           </ul>
         </nav>
 
-        <section class="footer-social" aria-labelledby="footerSocialTitle">
-          <h2 class="footer-section-title" id="footerSocialTitle" data-en="Follow our journey" data-ar="تابعوا رحلتنا">Follow our journey</h2>
           <a class="footer-social-link" href="https://www.instagram.com/ma7sob.kw/" target="_blank" rel="noopener noreferrer">
             <svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg>
             <span>@ma7sob.kw</span>
             <span class="footer-arrow" aria-hidden="true">↗</span>
           </a>
-        </section>
-      </div>
-
-      <div class="footer-bottom"><span class="copyright">© MAHSOUB</span></div>
+      <span class="copyright">© MAHSOUB</span>
     </div>
   </footer>
 
