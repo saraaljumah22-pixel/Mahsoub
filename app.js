@@ -1,10 +1,11 @@
 const PRODUCTS = [
-  {id:"matcha",name:"Matcha",ar:"ماتشا",category:"matcha",price:1.500,calories:39,carbs:12,fat:2.2,protein:1,ingredients:["Almond Milk","Matcha Powder","Zero-Calorie Vanilla","Stevia","Erythritol"],arIngredients:["حليب اللوز","مسحوق الماتشا","فانيلا خالية من السعرات","ستيفيا","إريثريتول"],image:"attached_assets/generated_images/matcha.jpg",servings:["Hot","Iced"]},
-  {id:"chocolate-milk",name:"Chocolate Milk",ar:"حليب الشوكولاتة",category:"chocolate",price:1.000,calories:50,carbs:4.8,fat:0.9,protein:4,ingredients:["Skimmed Milk","Organic Cocoa Powder","Stevia","Erythritol"],arIngredients:["حليب خالي الدسم","مسحوق كاكاو عضوي","ستيفيا","إريثريتول"],image:"attached_assets/generated_images/chocolate-milk.jpg",servings:["Hot","Iced"]},
+  {id:"matcha",name:"Matcha",ar:"ماتشا",category:"matcha",price:1.500,calories:39,carbs:12,fat:2.2,protein:1,ingredients:["Matcha","Erythritol","Almond Milk"],arIngredients:["ماتشا","إريثريتول","حليب اللوز"],image:"attached_assets/generated_images/matcha.jpg",servings:["Hot","Iced"]},
+  {id:"chocolate-milk",name:"Chocolate Milk",ar:"حليب كاكاو",category:"chocolate",price:1.000,calories:50,carbs:4.8,fat:0.9,protein:4,ingredients:["Skimmed Milk","Organic Cocoa Powder"],arIngredients:["حليب خالي الدسم","مسحوق كاكاو عضوي"],image:"attached_assets/generated_images/chocolate-milk.jpg",servings:["Hot","Iced"]},
   {id:"coffee-latte",name:"Coffee Latte",ar:"كوفي لاتيه",category:"coffee",price:1.250,calories:57,carbs:10,fat:1,protein:2,ingredients:["Low-fat Milk","Espresso Shot","Zero-Calorie Caramel Syrup","Stevia","Erythritol"],arIngredients:["حليب قليل الدسم","شوت إسبريسو","سيرب كراميل خالي من السعرات","ستيفيا","إريثريتول"],image:"attached_assets/generated_images/coffee-latte.jpg",servings:["Hot","Iced"]},
   {id:"americano",name:"Americano",ar:"أمريكانو",category:"coffee",price:1.000,calories:0,carbs:0,fat:0,protein:0,ingredients:["Espresso Shot","Water","Ice"],arIngredients:["شوت إسبريسو","ماء","ثلج"],image:"attached_assets/generated_images/americano.jpg",servings:["Hot","Iced"]},
   {id:"water",name:"Water",ar:"ماء",category:"water",price:0.250,calories:0,carbs:0,fat:0,protein:0,ingredients:["Regular bottled water"],arIngredients:["ماء عادي معبأ"],image:"attached_assets/generated_images/water.jpg",servings:[],water:true}
 ];
+const BESTSELLER_IDS=["matcha","chocolate-milk","coffee-latte","americano"];
 const CONTACT_EMAIL="saraahdi04@icloud.com";
 
 const $=(selector,root=document)=>root.querySelector(selector);

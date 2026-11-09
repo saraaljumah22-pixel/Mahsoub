@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "node scripts/check-ordering.js",
+    "check:catalog": "node scripts/check-menu-catalog.js",
     "build": "bash scripts/build-static.sh"
   },
   "keywords": [],
