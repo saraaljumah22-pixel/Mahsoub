@@ -24,6 +24,7 @@
       <a href="#contact" data-page="contact" class="nav-link" data-en="Contact" data-ar="تواصل معنا">Contact</a>
     </nav>
     <div class="header-actions">
+      <button class="icon-button cart-trigger" id="cartToggle" type="button" aria-label="Open shopping cart"><span data-en="Cart" data-ar="السلة">Cart</span><span class="cart-count" id="cartCount" aria-live="polite">0</span></button>
       <button class="icon-button language-button" id="languageToggle" type="button" aria-label="Switch language">AR</button>
       <button class="icon-button theme-button" id="themeToggle" type="button" aria-label="Switch to dark mode"><span id="themeLabel" data-en="Dark" data-ar="داكن">Dark</span></button>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
@@ -40,7 +41,11 @@
           <a class="button button-cream" href="#menu" data-page="menu"><span data-en="Explore Our Menu" data-ar="اكتشفوا قائمتنا">Explore Our Menu</span><span aria-hidden="true">↗</span></a>
         </div>
         <div class="hero-visual">
-          <img class="hero-illustration" src="attached_assets/generated_images/digital-kitchen-scale.svg" alt="Minimal digital kitchen scale with a measuring cup, displaying 120 g." data-alt-en="Minimal digital kitchen scale with a measuring cup, displaying 120 g." data-alt-ar="ميزان مطبخ رقمي أنيق مع كوب قياس، يعرض 120 غراماً.">
+          <img class="hero-fallback" src="attached_assets/generated_images/mahsoub-hero-poster.jpg" alt="Iced MAHSOUB drink on a digital kitchen scale" data-alt-en="Iced MAHSOUB drink on a digital kitchen scale" data-alt-ar="مشروب محسوب مثلج على ميزان مطبخ رقمي">
+          <video class="hero-video" autoplay muted loop playsinline preload="none" poster="attached_assets/generated_images/mahsoub-hero-poster.jpg" aria-hidden="true">
+            <source data-src="attached_assets/generated_videos/mahsoub-hero.mp4" type="video/mp4">
+          </video>
+          <button class="hero-video-toggle" id="heroVideoToggle" type="button" data-en="Pause animation" data-ar="إيقاف الحركة">Pause animation</button>
           <div class="hero-caption"><span>MAHSOUB</span><span data-en="EVERY SIP COUNTS" data-ar="كل رشفة محسوبة">EVERY SIP COUNTS</span></div>
         </div>
       </div>
@@ -53,6 +58,11 @@
         <div><p data-en="We bring together drinks you love and the details that help you choose with confidence. Thoughtfully prepared, with every sip in mind." data-ar="نجمع بين مشروباتكم المفضلة والتفاصيل التي تساعدكم على الاختيار بثقة. تحضير مدروس، مع الاهتمام بكل رشفة.">We bring together drinks you love and the details that help you choose with confidence. Thoughtfully prepared, with every sip in mind.</p>
           <a class="instagram-link" href="https://www.instagram.com/ma7sob.kw/" target="_blank" rel="noopener noreferrer"><svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg><span data-en="Follow our journey on Instagram." data-ar="تابعونا على إنستغرام.">Follow our journey on Instagram.</span><span>@ma7sob.kw</span><span aria-hidden="true">↗</span></a>
         </div>
+      </section>
+      <section class="featured-section" aria-labelledby="featuredTitle">
+        <div class="featured-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span><span data-en="A few favourites" data-ar="من خياراتنا المفضلة">A few favourites</span></p><h2 id="featuredTitle" data-en="Featured drinks." data-ar="مشروبات مختارة.">Featured drinks.</h2></div><p data-en="Choose a serving, check the details, and add your drink to the basket." data-ar="اختاروا طريقة التقديم، واطّلعوا على التفاصيل، ثم أضيفوا مشروبكم إلى السلة.">Choose a serving, check the details, and add your drink to the basket.</p></div>
+        <div class="featured-grid" id="featuredGrid"></div>
+        <div class="featured-bottom"><a class="button button-dark" href="#menu" data-page="menu"><span data-en="Explore the full menu" data-ar="اكتشفوا القائمة كاملة">Explore the full menu</span><span aria-hidden="true">↗</span></a></div>
       </section>
     </section>
 
@@ -135,7 +145,14 @@
         <div class="modal-title-row"><div><h2 id="modalTitle"></h2><p class="arabic-name" id="modalArabic" lang="ar" dir="rtl"></p></div><span class="modal-price" id="modalPrice"></span></div>
         <p class="modal-ingredients" id="modalDescription"></p><div class="nutrition-heading"><span data-en="Nutrition per serving" data-ar="القيم الغذائية لكل حصة">Nutrition per serving</span><span data-en="One standard serving" data-ar="حصة معيارية واحدة">One standard serving</span></div>
         <div class="nutrition-grid" id="nutritionGrid"></div><div class="modal-serving"><span data-en="Serving" data-ar="طريقة التقديم">Serving</span><div id="servingOptions"></div></div>
+        <div class="modal-actions"><button class="add-cart-button" id="modalAddToCart" type="button" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button><span class="modal-price-note" data-en="One standard serving" data-ar="حصة معيارية واحدة">One standard serving</span></div>
       </div>
+    </section>
+  </div>
+  <div class="cart-overlay" id="cartOverlay" hidden>
+    <section class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-header"><h2 id="cartTitle" data-en="Your basket" data-ar="سلتكم">Your basket</h2><button class="cart-close" id="cartClose" type="button" aria-label="Close shopping cart">×</button></div>
+      <div id="cartContent"></div>
     </section>
   </div>
 </body>

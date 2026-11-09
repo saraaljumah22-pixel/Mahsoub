@@ -40,3 +40,6 @@ timeoutMs = 30000
 deploymentTarget = "static"
 build = ["bash", "scripts/build-static.sh"]
 publicDir = "dist"
+
+[nix]
+channel = "stable-25_05"
