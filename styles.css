@@ -190,3 +190,10 @@ html[dir="rtl"] .hero-measured .hero-visual:after{background:linear-gradient(270
   .hero-measured .hero-visual:after{background:linear-gradient(180deg,rgba(32,63,50,.94) 0%,rgba(32,63,50,.82) 42%,rgba(32,63,50,.46) 74%,rgba(32,63,50,.24) 100%)}
   .hero-measurement{inset-inline-end:24px;bottom:17px}
 }
+.instagram-link{min-height:44px;max-width:100%;flex-wrap:wrap;overflow-wrap:anywhere}
+.footer-redesign .footer-social-link{min-height:44px}
+@media(max-width:700px){.instagram-link{gap:8px}}
+@media(max-width:370px){
+  .footer-redesign .footer-inner{flex-wrap:wrap;row-gap:4px}
+  .footer-redesign .footer-social-link,.footer-redesign .copyright{white-space:normal}
+}
