@@ -5,6 +5,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const officialProfile = "https://www.instagram.com/ma7sob.kw/";
+const officialUsername = new URL(officialProfile).pathname.split("/").filter(Boolean)[0];
+const officialHandle = `@${officialUsername}`;
 const htmlPath = process.argv[2] || path.join(process.cwd(), "index.html");
 const html = fs.readFileSync(htmlPath, "utf8");
 const instagramPattern = /instagram-link|instagram-icon|@ma7sob\.kw|instagram|إنستغرام/i;
@@ -47,6 +49,16 @@ function findInstagramAnchors(source) {
     const href = getAttribute(openingTag, "href");
     return /instagram/i.test(href) || instagramPattern.test(anchor);
   });
+}
+
+function findVisibleHandles(anchor) {
+  return [...anchor.matchAll(/<span\b[^>]*>[\s\S]*?<\/span\s*>/gi)]
+    .filter((match) =>
+      getAttribute(match[0].match(/^<span\b[^>]*>/i)?.[0] || "", "class")
+        .split(/\s+/)
+        .includes("instagram-handle"),
+    )
+    .map((match) => match[0].replace(/<[^>]*>/g, "").trim());
 }
 
 const instagramAnchors = findInstagramAnchors(html);
@@ -106,6 +118,23 @@ if (invalidLinks.length > 0) {
   process.exit(1);
 }
 
+const invalidHandles = instagramAnchors
+  .map((anchor) => {
+    const handles = findVisibleHandles(anchor);
+    if (handles.length === 1 && handles[0] === officialHandle) return null;
+    const openingTag = anchor.match(/^<a\b[^>]*>/i)?.[0] || "";
+    const href = getAttribute(openingTag, "href");
+    return `${href || "(missing href)"}: ${handles.length ? handles.join(", ") : "(missing visible handle)"}`;
+  })
+  .filter(Boolean);
+
+if (invalidHandles.length > 0) {
+  console.error(
+    `Instagram links must display exactly ${officialHandle}. Found: ${invalidHandles.join("; ")}`,
+  );
+  process.exit(1);
+}
+
 console.log(
-  `Checked ${instagramAnchors.length} Instagram links across the homepage section, contact section, and footer: all use ${officialProfile}`,
+  `Checked ${instagramAnchors.length} Instagram links across the homepage section, contact section, and footer: all use ${officialProfile} and display ${officialHandle}`,
 );
