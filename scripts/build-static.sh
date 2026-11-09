@@ -8,6 +8,7 @@ rm -rf "$OUT"
 mkdir -p "$OUT/attached_assets/generated_images"
 mkdir -p "$OUT/attached_assets/generated_videos"
 
+python3 "$ROOT/scripts/generate-supabase-config.py" "$OUT/supabase-config.js"
 cp "$ROOT/index.html" "$ROOT/styles.css" "$ROOT/app.js" "$OUT/"
 cp "$ROOT/attached_assets/IMG_1707_1793637320300.jpeg" "$OUT/attached_assets/"
 cp -R "$ROOT/attached_assets/generated_images/." "$OUT/attached_assets/generated_images/"
